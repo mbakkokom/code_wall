@@ -19,7 +19,7 @@ class Book {
 
 ## 2. Members
 
-A `Book` has some members with specific types. Let's list them all first:
+A `Book` has some properties (or henceforth known as **members**) with specific types. Let's list them all first:
 
 | No.| Name   | Type    |
 |----|--------|---------|
@@ -55,16 +55,16 @@ public: // setting this to `public`.
 };
 ```
 
-But such practice should be avoided at all. Instead, we declare `public methods` that allow us to fetch and set the members.
+But such practice should be avoided at all. Instead, we declare `public methods` that allow us to fetch (we call this **getter**) and set the members (**setter**).
 
 First we list the needed methods based on our members:
 
-| No.| Name   | Fetch             | Set                             |
-|----|--------|-------------------|---------------------------------|
-| 1. | Id     | `int id()`        | `void setId(int id)`            |
-| 2. | Title  | `string title()`  | `void setTitle(string title)`   |
-| 3. | Author | `string author()` | `void setAuthor(string author)` |
-| 4. | Genre  | `string genre()`  | `void setGenre(string genre)`   |
+| No.| Name   | Members          | Getter            | Setter                          |
+|----|--------|------------------|-------------------|---------------------------------|
+| 1. | Id     | `int mId`        | `int id()`        | `void setId(int id)`            |
+| 2. | Title  | `string mTitle`  | `string title()`  | `void setTitle(string title)`   |
+| 3. | Author | `string mAuthor` | `string author()` | `void setAuthor(string author)` |
+| 4. | Genre  | `string mGenre`  | `string genre()`  | `void setGenre(string genre)`   |
 
 Notice that we have a nice _pattern_ for fetching and setting members by calling its corresponding methods. Now, write the code.
 
@@ -78,6 +78,8 @@ class Book {
 
 public:
 // `public` member goes here.
+	
+	// Our getters
 	int id() {
 		return mId;
 	}
@@ -91,6 +93,7 @@ public:
 		return mGenre;
 	}
 	
+	// Our setters
 	void setId(int id) {
 		mId = id;
 	}
@@ -137,8 +140,10 @@ An constructor method: (1) must be **public**; (2) has the **same name** as the 
 class Book {
 ...
 public:
+	...
+	// Initialisers
 	Book() { }
-...
+	...
 }
 ```
 
@@ -148,6 +153,8 @@ Because of C++ overloading capability, we can create multiple constructor method
 class Book {
 ...
 public:
+	...
+	// Initialisers
 	Book() { }
 	Book(int id, string title, string author, string genre) {
 		setId(id);
@@ -155,7 +162,7 @@ public:
 		setAuthor(author);
 		setGenre(genre);
 	}
-...
+	...
 }
 ```
 
@@ -185,6 +192,8 @@ We can create more method(s) according to our need. For example, let's create a 
 class Book:
 ...
 public:
+	...
+	// Additional method(s)
 	void print() {
 		cout << "BOOK ENTRY:" << endl;
 		cout << title() << endl;
@@ -222,6 +231,8 @@ class Book {
 
 public:
 // `public` member goes here.
+	
+	// Initialisers
 	Book() { }
 	Book(int id, string title, string author, string genre) {
 		setId(id);
@@ -230,6 +241,7 @@ public:
 		setGenre(genre);
 	}
 	
+	// Our getters
 	int id() {
 		return mId;
 	}
@@ -243,6 +255,7 @@ public:
 		return mGenre;
 	}
 	
+	// Our setters
 	void setId(int id) {
 		mId = id;
 	}
@@ -256,6 +269,7 @@ public:
 		mGenre = genre;
 	}
 	
+	// Additional method(s)
 	void print() {
 		cout << "BOOK ENTRY:" << endl;
 		cout << title() << endl;
@@ -265,10 +279,13 @@ public:
 };
 ```
 
-And full code of using the `Book` class...
+## Using the code
+
+Here's an example of a C++ code that uses our class.
 
 ```cpp
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -281,6 +298,8 @@ class Book {
 
 public:
 // `public` member goes here.
+
+	// Initialisers
 	Book() { }
 	Book(int id, string title, string author, string genre) {
 		setId(id);
@@ -289,6 +308,7 @@ public:
 		setGenre(genre);
 	}
 	
+	// Our getters
 	int id() {
 		return mId;
 	}
@@ -302,6 +322,7 @@ public:
 		return mGenre;
 	}
 	
+	// Our setters
 	void setId(int id) {
 		mId = id;
 	}
@@ -315,6 +336,7 @@ public:
 		mGenre = genre;
 	}
 	
+	// Additional method(s)
 	void print() {
 		cout << "BOOK ENTRY:" << endl;
 		cout << title() << endl;
